@@ -1,51 +1,75 @@
 import React from 'react'
-import TodoItems from './TodoItems'
+//import TodoItems from './TodoItems'
 
 export default class TodoList extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      newItem: '',
       items: []
     }
-
-    this.addItem = this.addItem.bind(this)
   }
 
-  addItem(e) {
-    if (this._inputElement.value !== '') {
-      var newItem = {
-        text: this._inputElement.value,
-        key: Date.now()
-      }
+  updateInput(key, value) {
+    this.setState({
+      [key]: value
+    })
+  }
 
-      this.setState(prevState => {
-        return {
-          items: prevState.items.concat(newItem)
-        }
-      })
+  addItem() {
+    const newItem = {
+      id: 1 + Math.random(),
+      value: this.state.newItem.slice()
     }
 
-    this._inputElement.value = ''
-    // eslint-disable-next-line no-console
-    console.log(this.state.items)
+    //copy of current list of items
+    const items = [...this.state.items]
 
-    e.preventDefault()
+    //add new item to list
+    items.push(newItem)
+    console.log(items)
+
+    this.setState({
+      items,
+      newItem: ''
+    })
+  }
+
+  deleteItem(id) {
+    //copy current items
+    const items = [...this.state.items]
+
+    const updatedItems = items.filter(items => items.id !== id)
+
+    //this.setState({ items: updatedItems })
   }
 
   render() {
     return (
       <div className="todoList">
-        <div className="header">
-          <form onSubmit={this.addItem}>
-            <input
-              ref={a => (this._inputElement = a)}
-              placeholder="Enter Task"
-            ></input>
-            <button type="submit"> Add </button>
-          </form>
-        </div>
-        <TodoItems entries={this.state.items} />
+        <h2>Add a task</h2>
+        <br />
+        <input
+          type="text"
+          placeholder="Add an Item"
+          value={this.state.newItem}
+          onChange={e => this.updateInput('newItem', e.target.value)}
+        />
+        <button onClick={() => this.addItem()}> Add </button>
+
+        <ul>
+          {this.state.items.map(item => {
+            return (
+              <li key={item.id}>
+                {item.value}
+                <del>
+                  <button onClick={() => this.deleteItem(item.id)}>X</button>
+                </del>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     )
   }

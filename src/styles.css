@@ -4,13 +4,34 @@ body {
   font-family: sans-serif;
 }
 
-.todoList .header input {
+.todoList input {
   padding: 10px;
   font-size: 16px;
   border: solid 2px solid #fff;
 }
 
-.todoList .header button {
+.todoList button {
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px;
+  margin-right: 0xp;
+  background-color: slateblue;
+  color: white;
+}
+
+.todoList button:hover {
+  background-color: darkblue;
+  cursor: pointer;
+}
+
+.todoList .theList li {
+  background-color: aliceblue;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.addNewList button {
   padding: 10px;
   font-size: 16px;
   margin: 10px;
@@ -19,14 +40,6 @@ body {
   color: white;
 }
 
-.todoList .header button:hover {
-  background-color: darkblue;
-  cursor: pointer;
-}
-
-.todoList .theList li {
-  background-color: slategrey;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 5px;
+.addNewList h3 {
+  font-family: sans-serif;
 }
