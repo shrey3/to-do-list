@@ -1,3 +1,7 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
 body {
   padding: 50px;
   background-color: #66ccff;
@@ -10,7 +14,44 @@ body {
   border: solid 2px solid #fff;
 }
 
-.todoList button {
+.todoList h2 {
+  text-align: center;
+  color: slateblue;
+  text-decoration: underline;
+}
+
+.todoList li {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  list-style: none;
+  font-size: 20px;
+  text-align: center;
+}
+
+.todoList li:hover {
+  background-color: pink;
+  cursor: pointer;
+}
+
+.todoList li button {
+  border-radius: 5px;
+  background-color: slateblue;
+  color: white;
+  margin: 10px;
+}
+
+.todList li button[name='delButton']:hover {
+  background-color: red;
+  cursor: pointer;
+}
+
+ul {
+  padding: 0px;
+}
+
+.todoList button[name='addButton'] {
   padding: 10px;
   font-size: 16px;
   margin: 10px;
@@ -19,7 +60,7 @@ body {
   color: white;
 }
 
-.todoList button:hover {
+.todoList button[name='addButton']:hover {
   background-color: darkblue;
   cursor: pointer;
 }
@@ -31,15 +72,7 @@ body {
   border-radius: 5px;
 }
 
-.addNewList button {
-  padding: 10px;
-  font-size: 16px;
-  margin: 10px;
-  margin-right: 0xp;
-  background-color: slategray;
-  color: white;
-}
-
-.addNewList h3 {
+.container .addNewList h2 {
   font-family: sans-serif;
+  justify-content: center;
 }

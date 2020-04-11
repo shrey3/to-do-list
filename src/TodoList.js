@@ -7,7 +7,11 @@ export default class TodoList extends React.Component {
 
     this.state = {
       newItem: '',
-      items: []
+      items: [],
+      completed: {
+        0: true,
+        1: false
+      }
     }
   }
 
@@ -22,13 +26,11 @@ export default class TodoList extends React.Component {
       id: 1 + Math.random(),
       value: this.state.newItem.slice()
     }
-
     //copy of current list of items
     const items = [...this.state.items]
-
     //add new item to list
     items.push(newItem)
-    console.log(items)
+    // console.log(items)
 
     this.setState({
       items,
@@ -42,34 +44,53 @@ export default class TodoList extends React.Component {
 
     const updatedItems = items.filter(items => items.id !== id)
 
-    //this.setState({ items: updatedItems })
+    this.setState({ items: updatedItems })
+  }
+
+  handleCheck(index) {
+    console.log(index)
+
+    this.setState(state => ({
+      completed: { ...state.completed, [index]: !state.completed[index] }
+    }))
   }
 
   render() {
     return (
-      <div className="todoList">
-        <h2>Add a task</h2>
-        <br />
-        <input
-          type="text"
-          placeholder="Add an Item"
-          value={this.state.newItem}
-          onChange={e => this.updateInput('newItem', e.target.value)}
-        />
-        <button onClick={() => this.addItem()}> Add </button>
+      <div className="container">
+        <div className="todoList">
+          <h2>To-Do App</h2>
+          <br />
+          <input
+            type="text"
+            placeholder="Add an Item"
+            value={this.state.newItem}
+            onChange={e => this.updateInput('newItem', e.target.value)}
+          />
+          <button name="addButton" onClick={() => this.addItem()}>
+            {' '}
+            Add{' '}
+          </button>
 
-        <ul>
-          {this.state.items.map(item => {
-            return (
-              <li key={item.id}>
-                {item.value}
-                <del>
-                  <button onClick={() => this.deleteItem(item.id)}>X</button>
-                </del>
-              </li>
-            )
-          })}
-        </ul>
+          <ul>
+            {this.state.items.map(item => {
+              return (
+                <li key={item.id}>
+                  {/* <input id="chk" onChange={this.handleCheck} type="checkbox" /> */}
+
+                  {item.value}
+
+                  <button
+                    className="delButton"
+                    onClick={() => this.deleteItem(item.id)}
+                  >
+                    X
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </div>
     )
   }
