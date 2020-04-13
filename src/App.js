@@ -2,17 +2,15 @@
 
 import React from 'react'
 import { hot } from 'react-hot-loader'
+import Todo from './Todo'
 import TodoList from './TodoList'
+import TodoApp from './TodoApp'
 
 class App extends React.Component {
-  handleClick() {
-    console.log('Button was clicked')
-  }
-
   render() {
     return (
-      <div>
-        <TodoList />
+      <div className="header">
+        <TodoApp />
       </div>
     )
   }
