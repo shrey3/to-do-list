@@ -25,6 +25,7 @@ class AddTodo extends React.Component {
           <label>Add New todo:</label>
           <input
             type="text"
+            placeholder="Enter new task"
             onChange={this.handleChange}
             value={this.state.content}
           />

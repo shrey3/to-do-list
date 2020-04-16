@@ -1,16 +1,13 @@
 /* eslint-disable */
 
 import React, { useState } from 'react'
-import Todos from './Todos'
 import AddTodo from './AddTodo'
 import { hot } from 'react-hot-loader'
+import List from './List'
 
 class App extends React.Component {
   state = {
-    todos: [
-      { id: 1, content: 'buy milk' },
-      { id: 2, content: 'play mario kart' }
-    ]
+    todos: [{ id: 1, content: 'buy milk', completed: false }]
   }
 
   deleteTodo = id => {
@@ -29,12 +26,24 @@ class App extends React.Component {
     this.setState({ todos })
   }
 
+  handletodoCheck = (value, checked) => {
+    this.setState({
+      todos: this.state.todos.map(todo =>
+        todo.value === value ? { value, checked: !checked } : todo
+      )
+    })
+  }
+
   render() {
     return (
       <div className="todo-app container">
         <h1 className="center blue-text">Todo App</h1>
-        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} />
         <AddTodo addTodo={this.addTodo} />
+        <List
+          todos={this.state.todos}
+          deleteTodo={this.deleteTodo}
+          handletodoCheck={this.handletodoCheck}
+        />
       </div>
     )
   }

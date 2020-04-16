@@ -3,3 +3,12 @@ body {
   background-color: lightyellow;
   font-family: sans-serif;
 }
+
+.collection-item {
+  font-size: 18px;
+}
+
+.collection-item:hover {
+  background-color: pink;
+  cursor: pointer;
+}
