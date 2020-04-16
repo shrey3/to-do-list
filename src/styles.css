@@ -4,11 +4,17 @@ body {
   font-family: sans-serif;
 }
 
-.collection-item {
+.collection-item .item-checkbox span {
   font-size: 18px;
+  color: black;
+}
+
+.collection-item .item-checkbox button {
+  align-items: right;
+  color: blue;
+  background-color: white;
 }
 
 .collection-item:hover {
-  background-color: pink;
-  cursor: pointer;
+  background-color: aliceblue;
 }

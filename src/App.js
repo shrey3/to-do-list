@@ -14,22 +14,20 @@ class App extends React.Component {
     const todos = this.state.todos.filter(todo => {
       return todo.id !== id
     })
-
     this.setState({ todos })
   }
 
   addTodo = todo => {
     todo.id = Math.random()
-
+    todo.completed = false
     let todos = [...this.state.todos, todo]
-
     this.setState({ todos })
   }
 
-  handletodoCheck = (value, checked) => {
+  handletodoCheck = ({ content, checked }) => {
     this.setState({
       todos: this.state.todos.map(todo =>
-        todo.value === value ? { value, checked: !checked } : todo
+        todo.content === content ? { content, checked: !checked } : todo
       )
     })
   }

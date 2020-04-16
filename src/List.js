@@ -2,9 +2,9 @@
 import React from 'react'
 
 class List extends React.Component {
-  textStyle(checked) {
-    console.log(checked)
-    return { textDecoration: checked ? 'line-through' : 'none' }
+  textStyle(completed) {
+    //console.log(completed)
+    return { textDecoration: completed ? 'none' : 'line-through' }
   }
 
   render() {
@@ -13,22 +13,25 @@ class List extends React.Component {
     const todoList = todos.length ? (
       todos.map(todo => {
         return (
-          <div
-            className="collection-item"
-            key={todo.id}
-            onClick={() => {
-              deleteTodo(todo.id)
-            }}
-          >
+          <div className="collection-item" key={todo.id}>
             <div className="item-checkbox">
-              <input
-                type="checkbox"
-                checked={todo.checked}
-                onChange={() => handletodoCheck(todo)}
-              />
-              <React.Fragment>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => handletodoCheck(todo)}
+                />
                 <span style={this.textStyle(todo.checked)}>{todo.content}</span>
-              </React.Fragment>
+              </label>
+
+              <button
+                className="right"
+                onClick={() => {
+                  deleteTodo(todo.id)
+                }}
+              >
+                x{' '}
+              </button>
             </div>
           </div>
         )
